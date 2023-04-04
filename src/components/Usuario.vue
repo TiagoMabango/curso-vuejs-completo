@@ -11,7 +11,10 @@
 export default {
      name: 'Usuario',
      props: {
-        nome: [String, Number]
+        nome: {
+            type:String,
+            required: true
+        }
      }
 }
 </script>
