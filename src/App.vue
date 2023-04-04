@@ -2,11 +2,11 @@
 
     <div id="app">
           <img  class="img" alt="Vue logo" src="./assets/cronometro.png">
-          <a class="timer">00:00,00</a>
+          <a class="timer"> {{numero}} </a>
 
           <div class="areaBtn">
-              <button class="botao">VAI</button>
-              <button class="botao">LIMPAR</button>
+              <button class="botao" @click="vai"> {{botao}}</button>
+              <button class="botao" @click="limpar">LIMPAR</button>
           </div>
     </div>
   
@@ -16,6 +16,55 @@
 
 export default {
   name: 'App',
+  data(){
+    return{
+      numero:0,
+      botao: 'VAI',
+      timer: null,
+      ss: 0,
+      mm: 0,
+      hh:0
+    }
+  },
+  methods:{
+    vai(){
+      if(this.timer !== null){
+        clearInterval(this.timer)
+        this.timer = null
+        this.botao = 'VAI'
+      }else{
+        this.timer = setInterval(()=>{
+          this.rodarTimer()
+        }, 100)
+          this.botao = 'PAUSAR'
+      }
+
+      
+      
+    },
+    limpar(){
+
+    },
+    rodarTimer(){
+      this.ss++
+
+      if(this.ss == 59){
+        this.ss = 0
+        this.mm++
+      }
+
+      if(this.mm == 59) {
+        this.mm = 0
+        this.hh++
+      }
+
+      let format = (this.hh < 10 ? '0'+ this.hh: this.hh) + ':'
+      + (this.mm <10 ? '0'+this.mm : this.mm) + ',' 
+      +(this.ss < 10 ?  '0'+this.ss : this.ss)
+
+      return this.numero = format
+     }
+  }
 }
 </script>
 
