@@ -43,7 +43,15 @@ export default {
       
     },
     limpar(){
+      if(this.timer !== null){
+        clearInterval()
+        this.timer = null
+      }
 
+      this.mm = 0
+      this.ss = 0
+      this.hh = 0
+      this.numero = 0
     },
     rodarTimer(){
       this.ss++
